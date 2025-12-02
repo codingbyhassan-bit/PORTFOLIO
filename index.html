@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Hassan Naeem | Portfolio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Config & Styles -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#3b82f6', // Blue
+                        secondary: '#8b5cf6', // Purple
+                        dark: '#0f172a',
+                        darker: '#020617', // Added for chat window
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'bounce-slow': 'bounce 3s infinite', // Added for chat button
+                    }
+                },
+                keyframes: {
+                    blob: {
+                        '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                        '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                        '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                        '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                    },
+                    float: {
+                        '0%, 100%': { transform: 'translateY(0)' },
+                        '50%': { transform: 'translateY(-20px)' },
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb; 
+        }
+
+        /* Typing Effect Cursor */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Chatbot Animations */
+        .chat-enter {
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 0.3s forwards ease-out;
+        }
+        @keyframes slideUp {
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-dark text-white overflow-x-hidden selection:bg-primary selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 left-0 bg-dark/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 cursor-pointer">
+                    <img src="CODING by HASSAN.png" alt="Coding by Hassan" class="h-12 w-auto hover:opacity-80 transition">
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="hover:text-primary transition px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="#about" class="hover:text-primary transition px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="#portfolio" class="hover:text-primary transition px-3 py-2 rounded-md text-sm font-medium">Portfolio</a>
+                        <a href="#contact" class="bg-primary hover:bg-blue-600 text-white px-4 py-2 rounded-full transition text-sm font-medium">Contact Me</a>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex md:hidden">
+                    <button onclick="toggleMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark border-b border-white/10">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#about" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#portfolio" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Portfolio</a>
+                <a href="#contact" class="text-primary block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <!-- Background Blobs -->
+        <div class="absolute top-0 left-1/4 w-72 h-72 bg-primary/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-72 h-72 bg-secondary/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="text-center lg:text-left">
+                    <h2 class="text-primary font-semibold tracking-wide uppercase mb-2">Welcome to my Website</h2>
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">
+                        Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Hassan</span>
+                    </h1>
+                    <h3 class="text-2xl md:text-3xl text-gray-300 mb-6 h-10">
+                        I am a <span id="typing-text" class="text-white font-bold typing-cursor"></span>
+                    </h3>
+                    <p class="text-gray-400 mb-8 max-w-lg mx-auto lg:mx-0">
+                        ICS Student at KIPS College Faisalabad. I build accessible, pixel-perfect, and performant web experiences.
+                    </p>
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-4">
+                        <a href="#portfolio" class="px-8 py-3 bg-gradient-to-r from-primary to-secondary rounded-full font-semibold hover:shadow-lg hover:shadow-primary/50 transition transform hover:-translate-y-1">
+                            View Work
+                        </a>
+                        <a href="#contact" class="px-8 py-3 border border-white/20 rounded-full font-semibold hover:bg-white/10 transition">
+                            Contact Me
+                        </a>
+                    </div>
+                    
+                    <!-- Social Icons -->
+                    <div class="mt-8 flex justify-center lg:justify-start space-x-6">
+                        <a href="https://www.facebook.com/share/17h4DSgqRg/" target="_blank" class="text-gray-400 hover:text-[#1877F2] text-2xl transition"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com" target="_blank" class="text-gray-400 hover:text-[#E4405F] text-2xl transition"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@codingbyhassan?is_from_webapp=1&sender_device=pc" target="_blank" class="text-gray-400 hover:text-[#000000] hover:bg-white hover:rounded-full text-2xl transition"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://youtube.com/@codingbyhassan?si=hi1CgR4SiyF5ocjZ" target="_blank" class="text-gray-400 hover:text-[#FF0000] text-2xl transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Image Content -->
+                <div class="relative flex justify-center">
+                    <div class="relative w-72 h-72 md:w-96 md:h-96">
+                        <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full rotate-6 opacity-50 blur-lg"></div>
+                        <!-- Updated to rounded-full for circular image -->
+                        <img src="WhatsApp Image 2025-11-30 at 1.36.03 PM.jpeg" alt="Muhammad Hassan Naeem" class="relative w-full h-full object-cover rounded-full border-4 border-dark shadow-2xl animate-float">
+                        
+                        <!-- Floating Badge -->
+                        <div class="absolute -bottom-4 -right-4 bg-dark/90 backdrop-blur border border-white/10 p-4 rounded-xl shadow-xl flex items-center gap-3 animate-bounce">
+                            <div class="bg-primary/20 p-2 rounded-full text-primary">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-400">Skillset</p>
+                                <p class="font-bold">Front-End Dev</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-black/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">About <span class="text-primary">Me</span></h2>
+                <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1">
+                    <h3 class="text-2xl font-bold mb-4">Passionate Student & Developer</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        I’m Hassan, currently pursuing my ICS at <span class="text-white font-semibold">KIPS College Faisalabad</span>. I have a great interest in computers and technology.
+                    </p>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        In my free time, I learned <span class="text-primary">HTML, CSS, and JavaScript</span> to develop fully functional front-end websites with attractive animations. Currently, I specialize in developing responsive Landing Pages and One-Page sites.
+                    </p>
+                    <p class="text-gray-400 mb-8 leading-relaxed">
+                        I also use minor <span class="text-secondary">PHP</span> in the back-end to handle contact form data and store user information in databases.
+                    </p>
+                    
+                    <!-- Skills Grid -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white/5 p-4 rounded-lg border border-white/5 hover:border-primary/50 transition">
+                            <i class="fab fa-html5 text-orange-500 text-3xl mb-2"></i>
+                            <h4 class="font-bold">HTML5</h4>
+                            <div class="w-full bg-gray-700 h-1.5 rounded-full mt-2">
+                                <div class="bg-orange-500 h-1.5 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-lg border border-white/5 hover:border-primary/50 transition">
+                            <i class="fab fa-css3-alt text-blue-500 text-3xl mb-2"></i>
+                            <h4 class="font-bold">CSS3</h4>
+                            <div class="w-full bg-gray-700 h-1.5 rounded-full mt-2">
+                                <div class="bg-blue-500 h-1.5 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-lg border border-white/5 hover:border-primary/50 transition">
+                            <i class="fab fa-js text-yellow-400 text-3xl mb-2"></i>
+                            <h4 class="font-bold">JavaScript</h4>
+                            <div class="w-full bg-gray-700 h-1.5 rounded-full mt-2">
+                                <div class="bg-yellow-400 h-1.5 rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-lg border border-white/5 hover:border-primary/50 transition">
+                            <i class="fab fa-php text-purple-400 text-3xl mb-2"></i>
+                            <h4 class="font-bold">PHP (Minor)</h4>
+                            <div class="w-full bg-gray-700 h-1.5 rounded-full mt-2">
+                                <div class="bg-purple-400 h-1.5 rounded-full" style="width: 50%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2 flex justify-center">
+                    <img src="CODING by HASSAN.png" alt="Logo" class="w-2/3 md:w-full opacity-80 hover:opacity-100 transition duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">My <span class="text-primary">Work</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Here are a few projects I've worked on recently. Hover over them to see the details.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer">
+                    <div class="aspect-w-16 aspect-h-9 h-64 md:h-80 w-full overflow-hidden">
+                        <img src="Screenshot_29-11-2025_22108_.jpeg" alt="Medical Website" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <h3 class="text-2xl font-bold text-white mb-2">Dr. John Medical Clinic</h3>
+                        <p class="text-gray-300 text-sm mb-4">A professional medical landing page featuring appointment scheduling and services overview.</p>
+                        <div class="flex gap-2">
+                            <span class="px-3 py-1 bg-blue-600/30 text-blue-300 text-xs rounded-full border border-blue-600/50">HTML/CSS</span>
+                            <span class="px-3 py-1 bg-purple-600/30 text-purple-300 text-xs rounded-full border border-purple-600/50">Responsive</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer">
+                    <div class="aspect-w-16 aspect-h-9 h-64 md:h-80 w-full overflow-hidden">
+                        <img src="Screenshot_29-11-2025_221231_.jpeg" alt="Aero Phone Website" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <h3 class="text-2xl font-bold text-white mb-2">AERO X1 Product Page</h3>
+                        <p class="text-gray-300 text-sm mb-4">A modern, dark-themed product showcase website with neon aesthetics and specs grid.</p>
+                        <div class="flex gap-2">
+                            <span class="px-3 py-1 bg-blue-600/30 text-blue-300 text-xs rounded-full border border-blue-600/50">Modern UI</span>
+                            <span class="px-3 py-1 bg-purple-600/30 text-purple-300 text-xs rounded-full border border-purple-600/50">Dark Mode</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gradient-to-b from-dark to-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <!-- Contact Info -->
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Let's work <span class="text-primary">together!</span></h2>
+                    <p class="text-gray-400 mb-8">
+                        Feel free to contact me if you need a portfolio, landing page, or other web services. I'm available for freelance work.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center text-primary text-xl">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Phone</p>
+                                <a href="tel:+923087625023" class="text-lg font-semibold hover:text-primary transition">+92 308 7625023</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center text-primary text-xl">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Email</p>
+                                <a href="mailto:codingbyhassan@gmail.com" class="text-lg font-semibold hover:text-primary transition">codingbyhassan@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center text-primary text-xl">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Location</p>
+                                <p class="text-lg font-semibold">Faisalabad, Pakistan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-sm">
+                    <form onsubmit="event.preventDefault(); alert('Message sent! (Front-end Demo)');">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm text-gray-400 mb-2">Name</label>
+                                <input type="text" class="w-full bg-dark/50 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition text-white" placeholder="Muhammad Hassan">
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-400 mb-2">Email</label>
+                                <input type="email" class="w-full bg-dark/50 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition text-white" placeholder="you@example.com">
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-400 mb-2">Message</label>
+                                <textarea rows="4" class="w-full bg-dark/50 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition text-white" placeholder="Tell me about your project..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-gradient-to-r from-primary to-secondary text-white font-bold py-3 rounded-lg hover:shadow-lg hover:shadow-primary/50 transition transform hover:-translate-y-1">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-dark py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-500">
+                &copy; 2025 <span class="text-white font-semibold">Coding by Hassan</span>. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Chatbot Widget -->
+    <div id="chatbot-container" class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
+        <!-- Chat Window -->
+        <div id="chat-window" class="hidden flex-col w-80 md:w-96 bg-darker border border-white/20 rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 origin-bottom-right transform scale-95 opacity-0">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-primary to-secondary p-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="bg-white/20 p-2 rounded-full">
+                        <i class="fas fa-robot text-white"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white text-sm">Assistant of Hassan</h4>
+                        <p class="text-xs text-white/80 flex items-center gap-1">
+                            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span> Online
+                        </p>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-white/80 hover:text-white transition">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- Messages Area -->
+            <div id="chat-messages" class="h-80 overflow-y-auto p-4 space-y-4 bg-dark/95">
+                <!-- Initial Message -->
+                <div class="flex items-start gap-2 chat-enter">
+                    <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs border border-primary/30 flex-shrink-0">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="bg-white/10 p-3 rounded-2xl rounded-tl-none text-sm text-gray-200">
+                        Hello! I am Hassan's AI Assistant. Ask me anything about his skills, projects, or how to contact him! 👋
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="p-3 bg-dark border-t border-white/10">
+                <form onsubmit="handleChat(event)" class="flex gap-2">
+                    <input id="chat-input" type="text" placeholder="Type a message..." class="flex-1 bg-white/5 border border-white/10 rounded-full px-4 py-2 text-sm text-white focus:outline-none focus:border-primary transition" autocomplete="off">
+                    <button type="submit" class="w-10 h-10 bg-primary hover:bg-blue-600 rounded-full flex items-center justify-center text-white transition shadow-lg shadow-primary/30">
+                        <i class="fas fa-paper-plane text-sm"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Toggle Button -->
+        <button onclick="toggleChat()" class="w-14 h-14 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white text-2xl shadow-lg hover:scale-110 transition-transform duration-300 animate-bounce-slow">
+            <i class="fas fa-comment-dots"></i>
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Typing Effect
+        const textElement = document.getElementById('typing-text');
+        const texts = ['Front-End Developer'];
+        let count = 0;
+        let index = 0;
+        let currentText = '';
+        let letter = '';
+
+        (function type() {
+            if (count >= texts.length) {
+                count = 0;
+            }
+            
+            currentText = texts[count];
+            
+            if (!currentText) return;
+
+            letter = currentText.slice(0, ++index);
+            textElement.textContent = letter;
+
+            if (letter.length === currentText.length) {
+                count++;
+                index = 0;
+                setTimeout(type, 2000);
+            } else {
+                setTimeout(type, 150);
+            }
+        }());
+
+        // --- Chatbot Logic ---
+        const chatWindow = document.getElementById('chat-window');
+        const chatMessages = document.getElementById('chat-messages');
+        let isChatOpen = false;
+
+        function toggleChat() {
+            isChatOpen = !isChatOpen;
+            if (isChatOpen) {
+                chatWindow.classList.remove('hidden');
+                setTimeout(() => {
+                    chatWindow.classList.remove('scale-95', 'opacity-0');
+                    chatWindow.classList.add('scale-100', 'opacity-100');
+                }, 10);
+                document.getElementById('chat-input').focus();
+            } else {
+                chatWindow.classList.remove('scale-100', 'opacity-100');
+                chatWindow.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    chatWindow.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        function handleChat(e) {
+            e.preventDefault();
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+            if (!message) return;
+
+            // Add User Message
+            addMessage(message, 'user');
+            input.value = '';
+
+            // Simulate AI thinking delay with "typing" animation
+            const loadingId = addLoading();
+            setTimeout(() => {
+                removeLoading(loadingId);
+                const response = generateResponse(message.toLowerCase());
+                addMessage(response, 'bot');
+            }, 1000);
+        }
+
+        function addMessage(text, sender) {
+            const div = document.createElement('div');
+            div.className = `flex items-start gap-2 chat-enter ${sender === 'user' ? 'flex-row-reverse' : ''}`;
+            
+            const avatar = sender === 'bot' 
+                ? `<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs border border-primary/30 flex-shrink-0"><i class="fas fa-robot"></i></div>`
+                : `<div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-gray-400 text-xs border border-white/20 flex-shrink-0"><i class="fas fa-user"></i></div>`;
+            
+            const bubble = `<div class="${sender === 'bot' ? 'bg-white/10 rounded-tl-none' : 'bg-primary text-white rounded-tr-none'} p-3 rounded-2xl text-sm max-w-[80%] shadow-sm">
+                ${text}
+            </div>`;
+
+            div.innerHTML = avatar + bubble;
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function addLoading() {
+            const id = 'loading-' + Date.now();
+            const div = document.createElement('div');
+            div.id = id;
+            div.className = 'flex items-start gap-2 chat-enter';
+            div.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs border border-primary/30 flex-shrink-0"><i class="fas fa-robot"></i></div>
+                <div class="bg-white/10 p-3 rounded-2xl rounded-tl-none text-sm text-gray-200 flex gap-1 items-center h-10">
+                    <span class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce"></span>
+                    <span class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></span>
+                    <span class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.4s"></span>
+                </div>`;
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return id;
+        }
+
+        function removeLoading(id) {
+            const el = document.getElementById(id);
+            if (el) el.remove();
+        }
+
+        // --- Smart Responses Logic ---
+        function generateResponse(input) {
+            const msg = input.toLowerCase();
+            
+            // 1. Check for Hassan-specific (Priority)
+            if (msg.includes('hassan') || msg.includes('creator') || msg.includes('developer') || msg.includes('author')) {
+                return "Muhammad Hassan Naeem is the creator of this portfolio. He is a passionate Front-End Developer and ICS student at KIPS College.";
+            }
+            if (msg.match(/\b(contact|email|phone|call|number|reach)\b/)) {
+                return "You can reach Hassan at:<br>📧 codingbyhassan@gmail.com<br>📱 +92 308 7625023";
+            }
+            if (msg.match(/\b(skills?|tech|stack|languages?)\b/)) {
+                return "Hassan is skilled in HTML5, CSS3, JavaScript, and Tailwind CSS. He also has experience with PHP for backend forms.";
+            }
+            if (msg.match(/\b(projects?|work|portfolio|site)\b/)) {
+                return "Hassan has built projects like the 'Dr. John Medical Clinic' landing page and the 'AERO X1' product showcase. Check the Portfolio section!";
+            }
+            if (msg.match(/\b(location|city|live|where)\b/)) {
+                return "Hassan lives in Faisalabad, Pakistan. 🇵🇰";
+            }
+             if (msg.match(/\b(hire|job|freelance)\b/)) {
+                return "Yes, Hassan is available for freelance projects! Send him a message.";
+            }
+
+            // 2. Greetings & Small Talk
+            if (msg.match(/\b(hi|hello|hey|salaam|greetings)\b/)) {
+                const greetings = ["Hello! 👋", "Hi there!", "Salaam! How can I help?", "Hey! Welcome to the portfolio."];
+                return greetings[Math.floor(Math.random() * greetings.length)];
+            }
+            if (msg.includes('how are you')) {
+                return "I'm just a bot, but I'm functioning perfectly! How are you?";
+            }
+            if (msg.includes('thank')) {
+                return "You're welcome! 😊";
+            }
+            if (msg.includes('bye') || msg.includes('goodbye')) {
+                return "Goodbye! Have a great day! 👋";
+            }
+
+            // 3. Utilities (Time, Date, Math)
+            if (msg.includes('time')) {
+                return "The current time is " + new Date().toLocaleTimeString();
+            }
+            if (msg.includes('date') || msg.includes('day')) {
+                return "Today is " + new Date().toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            }
+            // Simple Math (e.g., "what is 2+2")
+            const mathMatch = msg.match(/(\d+)\s*([\+\-\*\/])\s*(\d+)/);
+            if (mathMatch) {
+                try {
+                    const result = eval(mathMatch[0]);
+                    return `${mathMatch[0]} = ${result}`;
+                } catch (e) { }
+            }
+
+            // 4. Tech Definitions (General Knowledge Lite)
+            const techTerms = {
+                'html': "HTML (HyperText Markup Language) is the standard markup language for creating web pages.",
+                'css': "CSS (Cascading Style Sheets) is used to style and layout web pages.",
+                'javascript': "JavaScript is a programming language that adds interactivity to websites.",
+                'js': "JS stands for JavaScript, the language of the web.",
+                'php': "PHP is a server-side scripting language used for web development.",
+                'frontend': "Front-end development focuses on the visual part of the website that users interact with.",
+                'backend': "Back-end development deals with servers, databases, and application logic.",
+                'api': "API stands for Application Programming Interface, allowing different software to talk to each other.",
+                'tailwind': "Tailwind CSS is a utility-first CSS framework for rapidly building custom designs."
+            };
+            
+            for (const [key, value] of Object.entries(techTerms)) {
+                if (msg.includes(key)) return value;
+            }
+
+            // 5. Fun
+            if (msg.includes('joke')) {
+                const jokes = [
+                    "Why do programmers prefer dark mode? Because light attracts bugs! 🐛",
+                    "How many programmers does it take to change a light bulb? None, that's a hardware problem.",
+                    "I walked into a bar... and declared it a variable."
+                ];
+                return jokes[Math.floor(Math.random() * jokes.length)];
+            }
+
+            // 6. Fallback
+            return "I'm an AI assistant focused on Hassan's portfolio. I can tell you about his **skills**, **projects**, **contact info**, or even define some **web terms**! What would you like to know?";
+        }
+    </script>
+</body>
+</html>
